@@ -27,6 +27,12 @@ CURL * psclient::init()
     return curl_easy_init();
 }
 
+/**
+ * @brief Deleter function for curl unique_pointer.
+ * @details [long description]
+ * 
+ * @param ptr_curl pointer to curl to use for deletion.
+ */
 void psclient::deleter(CURL * ptr_curl)
 {
     curl_easy_cleanup(ptr_curl);
