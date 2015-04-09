@@ -19,6 +19,12 @@
 
 #define AUTH_URL "https://www.pluralsight.com/a/SignIn"
 
+/**
+ * @brief initializes curl
+ * @details [long description]
+ * 
+ * @return a pointer to the initialized curl
+ */
 CURL * psclient::init()
 {
     CURLcode result = curl_global_init(CURL_GLOBAL_DEFAULT);
