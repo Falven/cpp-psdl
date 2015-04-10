@@ -8,8 +8,7 @@
 #include "pscourse.h"
 #include "psmodule.h"
 #include "pslesson.h"
-#include "network_error.h"
-#include "curl_error.h"
+#include "curl_error.hpp"
 
 #define VERSION "1.0.0.0"
 

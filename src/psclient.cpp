@@ -15,7 +15,7 @@
 #include <gumbo-query/Node.h>
 
 #include "psclient.h"
-#include "curl_error.h"
+#include "curl_error.hpp"
 
 #define AUTH_URL "https://www.pluralsight.com/a/SignIn"
 
@@ -91,6 +91,15 @@ psclient::psclient(const string_type & username, const string_type & password)
     }
 }
 
+/**
+ * @brief [brief description]
+ * @details [long description]
+ * 
+ * @param conn [description]
+ * @param result [description]
+ * @param L [description]
+ * @param _ [description]
+ */
 void psclient::authentication_init(CURL * conn, CURLcode & result)
 {
     result = curl_easy_setopt(conn, CURLOPT_URL, auth_.toString().c_str());
@@ -221,45 +230,6 @@ psclient::string_type psclient::file_get(const path_type & path)
 
     // Return by RVO (Reurn value optimization).
     return buffer;
-}
-
-/**
- * Authenticates the user to be able to access server resources.
- *
- * @param user The username of the user to authenticate.
- * @param pass The password of the user to authenticate.
- * @throw std::invalid_argument if the provided user or password is invalid.
- */
-void psclient::authenticate(const string_type & user, const string_type & pass)
-{
-    // Reponse code.
-    CURLcode result;
-
-    // URL-encode.
-    string_type url_str = auth_.toString();
-
-    // Pass in a pointer to the URL to work with. The parameter should be
-    // a char * to a zero terminated string which must be URL-encoded.
-    curl_easy_setopt(uptr_curl_.get(),
-                     CURLOPT_URL,
-                     curl_easy_escape(uptr_curl_.get(),
-                                      url_str.c_str(),
-                                      (int)(url_str.length())));
-
-    // Prepare get request.
-    string_type get_buffer;
-    curl_easy_setopt(uptr_curl_.get(), CURLOPT_READDATA, &get_buffer);
-
-    // Perform the request, res will get the return code
-    result = curl_easy_perform(uptr_curl_.get());
-
-    // Prepare post request.
-    //    string_type post_buffer;
-    //    curl_easy_setopt(&ptr_curl_, CURLOPT_WRITEDATA, &post_buffer);
-
-    // Check for errors
-    if(result != CURLE_OK)
-        throw curl_error(result);
 }
 
 std::vector<psclient::string_type> psclient::search(const string_type & text)

@@ -8,7 +8,7 @@ PROJECT_NAME           = psdl
 PROJECT_NUMBER         = 1.0.0.0
 PROJECT_BRIEF          = "Pluralsight video downloader for valid accounts."
 PROJECT_LOGO           = 
-OUTPUT_DIRECTORY       = /Users/francisco/Development/C++/psdl/doxygen
+OUTPUT_DIRECTORY       = ./doxygen
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
 OUTPUT_LANGUAGE        = English
@@ -109,7 +109,8 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = /Users/francisco/Development/C++/psdl/src
+INPUT                  = ./src \
+                         ./include
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
                          *.cc \

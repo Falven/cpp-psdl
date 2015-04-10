@@ -4,7 +4,7 @@
 #include <string>
 #include <curl/curl.h>
 
-#include "network_error.h"
+#include "network_error.hpp"
 
 class curl_error : public network_error
 {

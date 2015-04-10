@@ -45,11 +45,6 @@ public:
     psclient & operator=(psclient && other) = default;
 
     /*
-     *  Authenticates the provided user and password against the ps system.
-     */
-    void authenticate(const string_type & user, const string_type & pass);
-
-    /*
      * Searches Pluralsight for items matching the provided text.
      */
     std::vector<string_type> search(const string_type & text);
